@@ -1,8 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Gerentes from '../views/Gerentes.vue'
-import Home from '../views/Home.vue'
-import NovoUsuario from '../views/NovoUsuario.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Gerentes from '../views/Gerentes.vue';
+import Home from '../views/Home.vue';
 
 Vue.use(VueRouter)
 
@@ -20,7 +19,7 @@ const routes = [
   {
     path: '/cadastre-se',
     name: 'usuario.novo',
-    component:NovoUsuario
+    component:() => import('../views/NovoUsuario.vue'),
   },
   {
     path: '/login',

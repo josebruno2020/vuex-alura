@@ -23,7 +23,6 @@
 
 <script>
 import User from '../models/User'
-import axios from 'axios'
 export default {
     name:'Login',
     data() {
@@ -33,13 +32,8 @@ export default {
     },
     methods: {
         entrar() {
-            console.log(this.user);
-            axios.post('http://localhost:8000/auth/login', this.user)
-            .then(res => {
-                console.log(res);
-                
-            })
-            .catch(e => console.log(e))
+            this.$store.dispatch('efetuarLogin', this.user)
+                .then(() =>this.$router.push({name:'gerentes'}));
             
         }
     }

@@ -27,7 +27,6 @@
 
 <script>
 import User from '../models/User.js';
-import axios from 'axios';
 export default {
     name:'NovoUsuario',
     data() {
@@ -37,7 +36,7 @@ export default {
     },
     methods: {
         cadastrar() {
-            axios.post('http://localhost:8000/auth/register', this.user)
+            this.$http.post('auth/register', this.user)
             .then(res => {
                 console.log(this.user);
                 this.user = new User();
