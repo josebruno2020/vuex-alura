@@ -14,13 +14,12 @@
 <script>
 import NavBarLogadoVue from './NavBarLogado.vue';
 import NavBarDeslogadoVue from './NavBarDeslogado.vue';
+import { mapGetters } from 'vuex';
 export default {
     name:'NavBar',
     
     computed: {
-        usuarioLogado() {
-            return Boolean(this.$store.state.token)
-        }
+        ...mapGetters(['usuarioLogado'])
     },
     components: {
         'nav-bar-logado':NavBarLogadoVue,

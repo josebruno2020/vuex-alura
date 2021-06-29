@@ -25,7 +25,7 @@ export default {
           this.gerentes = res.data;
       })
       .catch(e => console.log(e));
-  }
+  },
 }
 </script>
 

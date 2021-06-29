@@ -2,9 +2,10 @@
     <div class="container">
         <h1 class="mt-2">Login</h1>
         <form @submit.prevent="entrar">
+            <div class="alert alert-danger" v-if="msgDanger">{{msgDanger}}</div>
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" v-model="user.email">
+                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail" v-model="user.email" @focus="msgDanger = ''">
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
@@ -27,13 +28,20 @@ export default {
     name:'Login',
     data() {
         return {
-            user:new User()
+            user:new User(),
+            msgDanger:''
         }
     },
     methods: {
         entrar() {
             this.$store.dispatch('efetuarLogin', this.user)
-                .then(() =>this.$router.push({name:'gerentes'}));
+                .then(() =>this.$router.push({name:'gerentes'}))
+                .catch(e => {
+                    if(e.request.status  == 401) {
+                        console.log(e)
+                        this.msgDanger = 'E-mail ou senha inválidos!';
+                    }
+                });
             
         }
     }

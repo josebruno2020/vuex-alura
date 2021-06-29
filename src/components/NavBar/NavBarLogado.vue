@@ -15,13 +15,9 @@
 </template>
 
 <script>
+import { logoutMixis } from '../../mixins';
 export default {
     name:'NavBarLogado',
-    methods: {
-        logout() {
-            this.$store.commit('DESLOGAR_USUARIO');
-            this.$router.push({name:'login'});
-        }
-    },
+    mixins:[logoutMixis]
 }
 </script>
